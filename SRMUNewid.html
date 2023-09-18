@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <style>
+        /* Basic CSS Reset */
+        body, h1, h2, h3, p, input, button {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Full-page styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Profile container styles */
+        .profile-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Profile picture styles */
+        .profile-pic {
+            width: 100%; /* Set the image to take full width */
+            max-height: 300px; /* Limit the maximum height */
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Form styles */
+        .profile-form input[type="text"],
+        .profile-form input[type="file"],
+        .profile-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .email-input {
+            display: flex;
+            align-items: center; /* Vertically align items in the email input box */
+        }
+
+        .email-input input[type="text"] {
+            flex-grow: 1; /* Allow the email input to grow and take available space */
+            padding-right: 10px; /* Add some spacing between input and button */
+        }
+
+        .email-input button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .email-input button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-pic">
+            <!-- Display the user's photo here -->
+            <!-- You can replace the src attribute with the user's photo URL -->
+            <img src="ek99esaeplc2f5naw7q5.jpg" alt="Profile Picture">
+        </div>
+        <form class="profile-form" enctype="multipart/form-data">
+            <input type="file" id="profile-photo" name="profile-photo" accept="image/*" required>
+            <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+            
+            <!-- Email input with "Verify Email" button inside -->
+            <div class="email-input">
+                <input type="text" id="email" name="email" placeholder="Email" required>
+                <button type="button" class="verify-email-button">Verify Email</button>
+            </div>
+            
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            <input type="text" id="college" name="college" placeholder="College Name" required>
+            <input type="text" id="course" name="course" placeholder="Course" required>
+            <input type="text" id="branch" name="branch" placeholder="Branch" required>
+            <input type="text" id="bio" name="bio" placeholder="Bio">
+            
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>
