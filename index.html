@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Selection</title>
+    <style>
+        /* Basic styles for layout and appearance */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to College Selection</h1>
+        <p>Choose your college from the list below:</p>
+        <select id="collegeDropdown">
+            <option value="bbd">Babu Banarasi Das Group of Educational Institutions</option>
+            <option value="srm">Shree Ramswaroop Memorial Group of Professional Colleges</option>
+            <option value="srgi">SR Group of Institutions</option>
+            <option value="rrgi">R.R. Group of Institutions</option>
+        </select>
+        <button id="continueButton">Continue</button>
+        <p>- Created By Shivansh Sharma</p>
+    </div>
+
+    <script>
+        const collegeDropdown = document.getElementById('collegeDropdown');
+        const continueButton = document.getElementById('continueButton');
+
+        continueButton.addEventListener('click', function () {
+            const selectedCollege = collegeDropdown.value;
+            if (selectedCollege === 'bbd') {
+                // Redirect to home.html when BBD Group is selected
+                window.location.href = 'loginpage.html';
+            } else if (selectedCollege === 'srm') {
+                // Redirect to SRMULogin.html when SRM Group is selected
+                window.location.href = 'SRMULogin.html';
+            } else if (selectedCollege === 'srgi') {
+                // Redirect to SRMULogin.html when SRM Group is selected
+                window.location.href = 'SRGILoginPage.html';
+            } else {
+                // Handle other colleges as needed
+                alert('Selected college: ' + selectedCollege);
+            }
+        });
+    </script>
+</body>
+</html>
