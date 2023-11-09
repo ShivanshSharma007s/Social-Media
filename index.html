@@ -8,7 +8,8 @@
         /* Basic styles for layout and appearance */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background: url('Campus.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,7 +21,7 @@
 
         .container {
             text-align: center;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -88,7 +89,7 @@
         continueButton.addEventListener('click', function () {
             const selectedCollege = collegeDropdown.value;
             if (selectedCollege === 'bbd') {
-                
+                // Redirect to Loginpage.html when BBD Group is selected
                 window.location.href = 'Loginpage.html';
             } else if (selectedCollege === 'srm') {
                 // Redirect to SRMULogin.html when SRM Group is selected
