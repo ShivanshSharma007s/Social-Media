@@ -2,24 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BBD Group Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
     <style>
         /* Basic styles for layout and appearance */
         body {
             font-family: Arial, sans-serif;
-            background-color: #fafafa;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-        }
-
-        header {
-            background-color: #fff;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
         .container {
@@ -28,231 +19,158 @@
             padding: 20px;
         }
 
-        .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin: 0;
-            color: #333;
-        }
-
-        p {
-            font-size: 14px;
-            color: #777;
-            margin: 5px 0;
-        }
-
-        .follow-info {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-            align-items: center;
-        }
-
-        .follow-details {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .profile-header {
             text-align: center;
-            margin-left: 20px; /* Add margin between Following and Followers */
+            margin-top: 20px;
         }
 
-        .follow-details strong {
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .profile-header img:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-section {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section h2 {
             color: #333;
-            font-size: 18px;
-        }
-
-        .follow-details span {
-            color: #777;
-            font-size: 12px;
-        }
-
-        /* Add link styles */
-        .follow-link {
-            text-decoration: none;
-            color: black; /* Change color to black */
             cursor: pointer;
         }
 
-        .follow-link:hover {
-            text-decoration: none; /* Remove underline on hover */
+        .profile-section h2:hover {
+            color: #007bff;
         }
 
-        .follow-link:hover, .follow-link:focus {
-            text-decoration: none; /* Remove underline on hover and focus */
+        .experience, .education {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: transform 0.2s ease-in-out;
         }
 
-        .posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
+        .experience:hover, .education:hover {
+            transform: scale(1.02);
         }
 
-        .post {
-            position: relative;
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .skills-list li:hover {
+            background-color: #0056b3;
+        }
+
+        .image-card {
             background-color: #fff;
-            border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease; /* Add fade-in animation */
-            opacity: 0;
-            animation-fill-mode: forwards;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
         }
 
-        .post img {
-            width: 100%;
+        .image-card:hover {
+            transform: scale(1.02);
+        }
+
+        .image-card img {
+            max-width: 100%;
             height: auto;
+            border-radius: 5px;
         }
 
-        /* Add your own content here */
-
-        /* About section */
-        .about {
-            margin-top: 20px;
-        }
-
-        .about p {
-            font-size: 14px;
-            color: #333;
-        }
-
-        /* Like, Comment, Share buttons */
-        .post-actions {
+        .like-comment-share {
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
         }
 
-        .post-actions button {
-            border: none;
+        .like-comment-share button {
             background: none;
+            border: none;
             cursor: pointer;
-            color: #333;
-            font-size: 14px;
-            transition: color 0.2s ease;
-            margin-right: 10px;
-        }
-
-        .post-actions button:hover {
-            color: #007bff;
-        }
-
-        /* Remove the empty space between @shivansh007s and the text below it */
-        .profile-info p {
-            margin: 0;
-        }
-
-        /* Define the fadeIn animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="profile">
-                <div class="profile-picture">
-                    <img src="65FAE304-992F-4E4E-82B2-C93427C3B9B6.jpeg" alt="Profile Picture">
-                </div>
-                <div class="profile-info">
-                    <h1>Shivansh Sharma</h1>
-                    <p>@shivanshsharma</p>
-                    <div class="follow-info">
-                        <div class="follow-details">
-                            <strong><a class="follow-link" href="followers.html">Followers</a></strong>
-                            <span>0</span>
-                        </div>
-                        <div class="follow-details">
-                            <strong><a class="follow-link" href="following.html">Following</a></strong>
-                            <span>0</span>
-                        </div>
-                    </div>
-                    <p><strong>College name</strong> - BBDU</p>
-                    <p><strong>Branch</strong> - B.Tech</p>
-                    <p><strong>Specialization</strong> - Computer Science & Engineering</p>
-                    <p><strong>Section</strong> - CS21</p>
-                    <p><strong>Year</strong> - 2nd Year (LE)</p>
-                </div>
-            </div>
+        <div class="profile-header">
+            <img src="65FAE304-992F-4E4E-82B2-C93427C3B9B6.jpeg" alt="Profile Picture">
+            <h1>Shivansh Sharma</h1>
         </div>
     </header>
-
     <div class="container">
-        <div class="posts">
-            <div class="post">
-                <img src="DCE0957F-C61A-45A5-B908-5CD66F21C483.jpeg" alt="Post 1" loading="lazy">
-                <div class="post-actions">
-                    <button>Like</button>
-                    <button>Comment</button>
-                    <button>Share</button>
-                </div>
+        <section class="profile-section">
+            <h2>Bio</h2>
+            <p>I am a 2nd-year Student of B.Tech Computer Science & Engineering. I am Interested in Ethical Hacking, Artificial Intelligence, Cyber Security. I also do Part-time Web Development</p>
+        </section>
+        <section class="profile-section">
+            <h2>About</h2>
+            <div class="experience">
+                <h3>Bachelor of Technology: Computer Science & Engineering</h3>
+                <p>Babu Banarasi Das University (BBDU)</p>
+                <p>2023 - 2026</p>
+                <p>Lateral Entry</p>
             </div>
-            <div class="post">
-                <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM (1).jpeg" alt="Post 2" loading="lazy">
-                <div class="post-actions">
-                    <button>Like</button>
-                    <button>Comment</button>
-                    <button>Share</button>
-                </div>
-            </div>
-            <div class="post">
-                <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM.jpeg" alt="Post 3" loading="lazy">
-                <div class="post-actions">
-                    <button>Like</button>
-                    <button>Comment</button>
-                    <button>Share</button>
-                </div>
-            </div>
-            <!-- Add more posts as needed -->
-        </div>
+            <!-- Add more experience entries as needed -->
+        </section>
+        <section class="profile-section">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>C++</li>
+                <li>JAVA</li>
+                <li>PYTHON</li>
+                <li>AUTOCAD</li>
+                <li>WEB-DEVELOPMENT</li>
+                <li>ETHICAL HACKING</li>
+            </ul>
+        </section>
     </div>
-
-    <!-- JavaScript for animating posts -->
-    <script>
-        // Function to animate posts
-        function animatePosts() {
-            const posts = document.querySelectorAll('.post');
-            let delay = 0;
-            posts.forEach((post, index) => {
-                setTimeout(() => {
-                    post.style.opacity = '1';
-                }, delay);
-                delay += 300; // Adjust the delay between posts as needed (in milliseconds)
-            });
-        }
-
-        // Call the function after the page loads
-        window.addEventListener('load', animatePosts);
-    </script>
+    <div class="container">
+        <div class="image-card">
+            <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM (1).jpeg" alt="Image 2">
+            <div class="like-comment-share">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+    <div class="container">
+        <div class="image-card">
+            <img src="DCE0957F-C61A-45A5-B908-5CD66F21C483.jpeg" alt="Image 1">
+            <div class="like-comment-share">
+                <button>Like</button>
+                <button>Comment</button>
+                <button>Share</button>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>
