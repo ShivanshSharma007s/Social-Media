@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-page {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .login-header {
+            margin-bottom: 20px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .login-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Add some spacing between the logo and form */
+        .logo {
+            margin-top: 20px;
+        }
+
+        /* Style the header text */
+        .login-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Style the "Create an account" link */
+        .message a {
+            font-weight: bold;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <script>
+        function openHomePage() {
+            // Get the values of the username and password input fields
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if the username and password match your criteria
+            if (username === "shivansh007s" && password === "MyPassword") {
+                // Open the homepage.html page when the Login button is clicked
+                window.open("homepage.html", "_blank");
+            } else {
+                // Display an error message if the credentials are incorrect
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-page">
+        <div class="logo">
+            <img src="bbd-group-1.png" alt="Your Logo" width="150">
+        </div>
+        <div class="login-header">
+            <h3>LOGIN</h3>
+            <p>Meet New People and Share Your Ideas In Your Campus</p>
+        </div>
+        <form class="login-form">
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button type="button" onclick="openHomePage()">Login</button>
+            <p class="message">Not registered? <a href="profilepage.html">Create an account</a></p>
+        </form>
+        <p>-Created by Shivansh Sharma</p>
+    </div>
+</body>
+</html>
