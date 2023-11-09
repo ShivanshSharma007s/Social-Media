@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BBD Group Profile</title>
     <style>
         /* Basic styles for layout and appearance */
@@ -106,7 +106,7 @@
 
         .posts {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 10px;
             margin-top: 20px;
         }
@@ -118,7 +118,9 @@
             border-radius: 5px;
             padding: 10px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
+            animation: fadeIn 1s ease; /* Add fade-in animation */
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
 
         .post img {
@@ -163,6 +165,16 @@
         .profile-info p {
             margin: 0;
         }
+
+        /* Define the fadeIn animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -174,7 +186,7 @@
                 </div>
                 <div class="profile-info">
                     <h1>Shivansh Sharma</h1>
-                    <p>@shivansh007s</p>
+                    <p>@shivanshsharma</p>
                     <div class="follow-info">
                         <div class="follow-details">
                             <strong><a class="follow-link" href="followers.html">Followers</a></strong>
@@ -224,5 +236,23 @@
             <!-- Add more posts as needed -->
         </div>
     </div>
+
+    <!-- JavaScript for animating posts -->
+    <script>
+        // Function to animate posts
+        function animatePosts() {
+            const posts = document.querySelectorAll('.post');
+            let delay = 0;
+            posts.forEach((post, index) => {
+                setTimeout(() => {
+                    post.style.opacity = '1';
+                }, delay);
+                delay += 300; // Adjust the delay between posts as needed (in milliseconds)
+            });
+        }
+
+        // Call the function after the page loads
+        window.addEventListener('load', animatePosts);
+    </script>
 </body>
 </html>
