@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Profile</title>
     <style>
-        /* Basic styles for layout and appearance */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+        /* Existing styles here */
 
         .container {
             max-width: 960px;
@@ -53,36 +47,35 @@
             color: #007bff;
         }
 
-        .experience, .education {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: transform 0.2s ease-in-out;
+        /* Style the file input for image upload */
+        .file-input {
+            display: none;
         }
 
-        .experience:hover, .education:hover {
-            transform: scale(1.02);
-        }
-
-        .skills-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .skills-list li {
+        .custom-upload-button {
             background-color: #007bff;
             color: #fff;
+            border: none;
             border-radius: 5px;
-            padding: 5px 10px;
-            display: inline-block;
-            margin-right: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .skills-list li:hover {
+        .custom-upload-button:hover {
             background-color: #0056b3;
+        }
+
+        .uploaded-images {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+            margin: 5px;
+            border: 1px solid #ccc;
         }
 
         .image-card {
@@ -91,18 +84,11 @@
             padding: 10px;
             margin: 20px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-            cursor: pointer;
-        }
-
-        .image-card:hover {
-            transform: scale(1.02);
         }
 
         .image-card img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
         }
 
         .like-comment-share {
@@ -115,10 +101,103 @@
             background: none;
             border: none;
             cursor: pointer;
+            color: #007bff;
+        }
+
+        .like-comment-share button:hover {
+            text-decoration: underline;
+        }
+
+        /* New styles for the settings box */
+        .settings-box {
+            display: none; /* Hide initially on all devices */
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 200px; /* Adjust the width as needed */
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999; /* Ensure the box is on top */
+            overflow-y: auto; /* Add scrolling for smaller screens */
+        }
+
+        .settings-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .settings-options a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #ff0000; /* Red background */
+            border-radius: 5px;
+            margin-top: 20px; /* Place the button at the top */
+        }
+
+        .logout-button a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Media query for mobile devices */
+        @media screen and (max-width: 768px) {
+            .settings-box {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0; /* Initially hidden */
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+                overflow-y: auto;
+            }
+            .settings-box.show {
+                width: 200px;
+            }
+
+            /* Add an "Options" button for mobile devices */
+            .options-button {
+                position: absolute;
+                top: 20px;
+                left: 20px; /* Adjust the left position */
+                background-color: #000;
+                color: #fff;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- "Options" button for mobile devices -->
+    <div class="options-button" id="optionsButton">Options</div>
+
+    <!-- Settings Box -->
+    <div class="settings-box" id="settingsBox">
+        <div class="settings-options">
+            <h1> SETTINGS </h1>
+            <a href="#">Edit Profile</a>
+        </div>
+        <div class="logout-button">
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
     <header>
         <div class="profile-header">
             <img src="65FAE304-992F-4E4E-82B2-C93427C3B9B6.jpeg" alt="Profile Picture">
@@ -138,7 +217,6 @@
                 <p>2023 - 2026</p>
                 <p>Lateral Entry</p>
             </div>
-            <!-- Add more experience entries as needed -->
         </section>
         <section class="profile-section">
             <h2>Skills</h2>
@@ -151,26 +229,50 @@
                 <li>ETHICAL HACKING</li>
             </ul>
         </section>
-    </div>
-    <div class="container">
-        <div class="image-card">
-            <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM (1).jpeg" alt="Image 2">
-            <div class="like-comment-share">
-                <button>Like</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div>
+        <section class="post-section">
+            <h2>Post an Image</h2>
+            <!-- Input field for image upload -->
+            <input type="file" id="imageUpload" class="file-input" accept="image/*">
+            <!-- Custom button to trigger file input -->
+            <label for="imageUpload" class="custom-upload-button">Upload Image</label>
+        </section>
+        <!-- Container for displaying uploaded images -->
+        <div class="uploaded-images" id="uploadedImages">
+            <!-- Images will be displayed here dynamically using JavaScript -->
         </div>
-    <div class="container">
-        <div class="image-card">
-            <img src="DCE0957F-C61A-45A5-B908-5CD66F21C483.jpeg" alt="Image 1">
-            <div class="like-comment-share">
-                <button>Like</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div>
-        </div>
-        
     </div>
+
+    <script>
+        const imageUpload = document.getElementById("imageUpload");
+        const uploadedImages = document.getElementById("uploadedImages");
+        const settingsButton = document.querySelector(".logout-button");
+        const optionsButton = document.getElementById("optionsButton");
+
+        // Function to handle image upload
+        imageUpload.addEventListener("change", (event) => {
+            const files = event.target.files;
+
+            for (const file of files) {
+                if (file.type.startsWith("image/")) {
+                    const imageElement = document.createElement("img");
+                    imageElement.classList.add("uploaded-image");
+                    imageElement.src = URL.createObjectURL(file);
+                    uploadedImages.appendChild(imageElement);
+                }
+            }
+        });
+
+        // Show/hide the settings box on button click
+        settingsButton.addEventListener("click", () => {
+            const settingsBox = document.getElementById("settingsBox");
+            settingsBox.classList.toggle("show");
+        });
+
+        // Show/hide the settings box on "Options" button click (for mobile devices)
+        optionsButton.addEventListener("click", () => {
+            const settingsBox = document.getElementById("settingsBox");
+            settingsBox.classList.toggle("show");
+        });
+    </script>
 </body>
 </html>
