@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>College Selection</title>
     <style>
         /* Basic styles for layout and appearance */
@@ -31,12 +31,17 @@
             color: #333;
         }
 
-        select {
+        .custom-select {
+            width: 100%;
             padding: 10px;
             font-size: 16px;
             border: 2px solid #007bff;
             border-radius: 5px;
             margin-top: 20px;
+        }
+
+        .custom-select:focus {
+            outline: none;
         }
 
         img {
@@ -64,9 +69,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to College Selection</h1>
-        <p>Choose your college from the list below:</p>
-        <select id="collegeDropdown">
+        <h1>Welcome To College Selection</h1>
+        <p>Meet People and Share your Ideas in your Campus</p>
+        <select class="custom-select" id="collegeDropdown">
             <option value="bbd">Babu Banarasi Das Group of Educational Institutions</option>
             <option value="srm">Shree Ramswaroop Memorial Group of Professional Colleges</option>
             <option value="srgi">SR Group of Institutions</option>
@@ -83,13 +88,13 @@
         continueButton.addEventListener('click', function () {
             const selectedCollege = collegeDropdown.value;
             if (selectedCollege === 'bbd') {
-                // Redirect to home.html when BBD Group is selected
-                window.location.href = 'loginpage.html';
+                // Redirect to Loginpage.html when BBD Group is selected
+                window.location.href = 'Loginpage.html';
             } else if (selectedCollege === 'srm') {
                 // Redirect to SRMULogin.html when SRM Group is selected
                 window.location.href = 'SRMULogin.html';
             } else if (selectedCollege === 'srgi') {
-                // Redirect to SRMULogin.html when SRM Group is selected
+                // Redirect to SRGILoginPage.html when SRGI Group is selected
                 window.location.href = 'SRGILoginPage.html';
             } else {
                 // Handle other colleges as needed
