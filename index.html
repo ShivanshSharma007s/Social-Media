@@ -2,404 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>College Selection</title>
     <style>
-        /* Existing styles here */
-
+        /* Basic styles for layout and appearance */
         body {
             font-family: Arial, sans-serif;
+            background: url('Campus.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .profile-header {
             text-align: center;
-            margin-top: 20px;
-        }
-
-        .profile-header img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .profile-header img:hover {
-            transform: scale(1.1);
-        }
-
-        .profile-section {
-            background-color: #fff;
-            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
             padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .profile-section h2 {
+        h1 {
+            font-size: 24px;
             color: #333;
-            cursor: pointer;
         }
 
-        .profile-section h2:hover {
-            color: #007bff;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .custom-upload-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .custom-upload-button:hover {
-            background-color: #0056b3;
-        }
-
-        .post-idea-button {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .post-idea-button:hover {
-            background-color: #218838;
-        }
-
-        .uploaded-images {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
-        .uploaded-image {
-            max-width: 100%;
-            height: auto;
-            margin: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .image-card {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .custom-select {
             width: 100%;
-            box-sizing: border-box;
-        }
-
-        .image-card img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .like-comment-share {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        .like-comment-share button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #007bff;
-        }
-
-        .like-comment-share button:hover {
-            text-decoration: underline;
-        }
-
-        .settings-box {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            overflow-y: auto;
-        }
-
-        .settings-options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .settings-options a {
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .logout-button {
-            padding: 10px 20px;
-            background-color: #ff0000;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
             border-radius: 5px;
             margin-top: 20px;
         }
 
-        .logout-button a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
+        .custom-select:focus {
+            outline: none;
         }
 
-        .discussion-button,
-        .discussion-button-right {
-            display: none;
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        button {
             background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 5px;
             padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
 
-        .discussion-button:hover,
-        .discussion-button-right:hover {
+        button:hover {
             background-color: #0056b3;
-        }
-
-        @media screen and (max-width: 768px) {
-            .settings-box {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 0;
-                background-color: rgba(0, 0, 0, 0.8);
-                z-index: 999;
-                overflow-y: auto;
-            }
-            .settings-box.show {
-                width: 200px;
-            }
-
-            .options-button,
-            .discussion-button {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                background-color: #000;
-                color: #fff;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .discussion-button {
-                display: block;
-            }
-
-            .discussion-button-right {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background-color: #000;
-                color: #fff;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        }
-
-        .settings-box-right {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #87CEFA;
-            color: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            overflow-y: auto;
-        }
-
-        .settings-options-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .settings-options-right a {
-            color: #000;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        /* Media query to hide the right settings box for mobile devices */
-        @media screen and (max-width: 768px) {
-            .settings-box-right {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="options-button" id="optionsButton">Options</div>
-    <div class="discussion-button-right" id="discussionButtonRight">Discuss</div>
-
-    <div class="settings-box" id="settingsBox">
-        <div class="settings-options">
-            <h1> SETTINGS </h1>
-            <a href="#">Edit Profile</a>
-        </div>
-        <div class="logout-button">
-            <a href="#">Logout</a>
-        </div>
-        <div class="discussion-button" id="discussionButton">Discussion</div>
-    </div>
-
-    <div class="settings-box-right" id="settingsBoxRight">
-        <div class="settings-options-right">
-            <h1> DISCUSSION </h1>
-            <a href="#">Chats and Groups</a>
-        </div>
-    </div>
-
-    <header>
-        <div class="profile-header">
-            <img src="65FAE304-992F-4E4E-82B2-C93427C3B9B6.jpeg" alt="Profile Picture">
-            <h1>Shivansh Sharma</h1>
-        </div>
-    </header>
     <div class="container">
-        <section class="profile-section">
-            <h2>Bio</h2>
-            <p>I am a 2nd-year Student of B.Tech Computer Science & Engineering. I am Interested in Ethical Hacking, Artificial Intelligence, Cyber Security. I also do Part-time Web Development</p>
-        </section>
-        <section class="profile-section">
-            <h2>About</h2>
-            <div class="experience">
-                <h3>Bachelor of Technology: Computer Science & Engineering</h3>
-                <p>Babu Banarasi Das University (BBDU)</p>
-                <p>2023 - 2026</p>
-                <p>Lateral Entry</p>
-            </div>
-        </section>
-        <section class="profile-section">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>C++</li>
-                <li>JAVA</li>
-                <li>PYTHON</li>
-                <li>AUTOCAD</li>
-                <li>WEB-DEVELOPMENT</li>
-                <li>ETHICAL HACKING</li>
-            </ul>
-        </section>
-        <section class="post-section">
-            <button class="post-idea-button">Post Idea</button>
-            <input type="file" id="imageUpload" class="file-input" accept="image/*">
-            <label for="imageUpload" class="custom-upload-button">Upload Image</label>
-        </section>
-        <div class="uploaded-images" id="uploadedImages"></div>
-    </div>
-
-    <div class="container">
-        <div class="image-card">
-            <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM (1).jpeg" alt="Image 2">
-            <div class="like-comment-share">
-                <button>Like</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div>
-        </div>
-        <div class="image-card">
-            <img src="DCE0957F-C61A-45A5-B908-5CD66F21C483.jpeg" alt="Image 1">
-            <div class="like-comment-share">
-                <button>Like</button>
-                <button>Comment</button>
-                <button>Share</button>
-            </div>
-        </div>
+        <h1>Welcome To College Selection</h1>
+        <p>Meet People and Share your Ideas in your Campus</p>
+        <select class="custom-select" id="collegeDropdown">
+            <option value="bbd">Babu Banarasi Das Group of Educational Institutions</option>
+            <option value="srm">Shree Ramswaroop Memorial Group of Professional Colleges</option>
+            <option value="srgi">SR Group of Institutions</option>
+            <option value="rrgi">R.R. Group of Institutions</option>
+        </select>
+        <button id="continueButton">Continue</button>
+        <p>- Created By Shivansh Sharma</p>
     </div>
 
     <script>
-        const imageUpload = document.getElementById("imageUpload");
-        const uploadedImages = document.getElementById("uploadedImages");
-        const settingsButton = document.querySelector(".logout-button");
-        const optionsButton = document.getElementById("optionsButton");
-        const discussionButton = document.getElementById("discussionButton");
-        const discussionButtonRight = document.getElementById("discussionButtonRight");
+        const collegeDropdown = document.getElementById('collegeDropdown');
+        const continueButton = document.getElementById('continueButton');
 
-        imageUpload.addEventListener("change", (event) => {
-            const files = event.target.files;
-
-            for (const file of files) {
-                if (file.type.startsWith("image/")) {
-                    const imageElement = document.createElement("img");
-                    imageElement.classList.add("uploaded-image");
-                    imageElement.src = URL.createObjectURL(file);
-                    uploadedImages.appendChild(imageElement);
-                }
+        continueButton.addEventListener('click', function () {
+            const selectedCollege = collegeDropdown.value;
+            if (selectedCollege === 'bbd') {
+                // Redirect to Loginpage.html when BBD Group is selected
+                window.location.href = 'Loginpage.html';
+            } else if (selectedCollege === 'srm') {
+                // Redirect to SRMULogin.html when SRM Group is selected
+                window.location.href = 'SRMULogin.html';
+            } else if (selectedCollege === 'srgi') {
+                // Redirect to SRGILoginPage.html when SRGI Group is selected
+                window.location.href = 'SRGILoginPage.html';
+            } else {
+                // Handle other colleges as needed
+                alert('Selected college: ' + selectedCollege);
             }
-        });
-
-        settingsButton.addEventListener("click", () => {
-            const settingsBox = document.getElementById("settingsBox");
-            settingsBox.classList.toggle("show");
-        });
-
-        optionsButton.addEventListener("click", () => {
-            const settingsBox = document.getElementById("settingsBox");
-            settingsBox.classList.toggle("show");
-            window.location.href = 'logout.html';
-        });
-
-        discussionButton.addEventListener("click", () => {
-            // Handle discussion button click for mobile devices
-            alert("Discussion button clicked!");
-            window.location.href = 'chatbox.html';
-
-        });
-
-        discussionButtonRight.addEventListener("click", () => {
-            // Handle discussion button click on the right for mobile devices
-            window.location.href = 'chatbox.html';
         });
     </script>
 </body>
