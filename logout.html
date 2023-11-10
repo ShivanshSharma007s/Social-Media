@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Your existing head content... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Settings Page</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #settings {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #logoutButton {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #logoutButton:hover {
+            background-color: #cc0000;
+        }
+    </style>
 </head>
 <body>
-    <!-- Your existing HTML content... -->
-
-    <!-- Logout Confirmation Dialog (Hidden by default) -->
-    <div id="logoutModal" class="modal">
-        <div class="modal-content">
-            <h2>Are you sure you want to log out?</h2>
-            <div class="modal-buttons">
-                <button id="logoutYesButton" class="blue-button">Yes</button>
-                <button id="logoutNoButton" class="red-button">No</button>
-            </div>
-        </div>
+    <div id="settings">
+        <h1>SETTINGS</h1>
+        <!-- Add your settings content here -->
     </div>
+    
+    <button id="logoutButton" onclick="redirectToIndex()">Logout</button>
 
-    <!-- JavaScript for the logout functionality -->
     <script>
-        // JavaScript to handle the logout button and confirmation dialog
-        const logoutButton = document.querySelector("#logoutButton");
-        const logoutModal = document.querySelector("#logoutModal");
-        const logoutYesButton = document.querySelector("#logoutYesButton");
-        const logoutNoButton = document.querySelector("#logoutNoButton");
-
-        // Function to show the confirmation dialog
-        function showLogoutConfirmation() {
-            logoutModal.style.display = "block";
+        function redirectToIndex() {
+            window.location.href = 'index.html';
         }
-
-        // Function to hide the confirmation dialog
-        function hideLogoutConfirmation() {
-            logoutModal.style.display = "none";
-        }
-
-        // Event listener for the logout button
-        logoutButton.addEventListener("click", showLogoutConfirmation);
-
-        // Event listeners for Yes and No buttons in the confirmation dialog
-        logoutYesButton.addEventListener("click", function () {
-            // Perform logout here (you can redirect to a logout page or clear session data)
-            alert("Logging out..."); // Replace this with your actual logout code
-        });
-
-        logoutNoButton.addEventListener("click", hideLogoutConfirmation);
-
-        // Close the dialog if the user clicks anywhere outside of it
-        window.addEventListener("click", function (event) {
-            if (event.target === logoutModal) {
-                hideLogoutConfirmation();
-            }
-        });
     </script>
 </body>
 </html>
