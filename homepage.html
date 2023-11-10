@@ -7,10 +7,17 @@
     <style>
         /* Existing styles here */
 
+        body {
+            font-family: Arial, sans-serif;
+        }
+
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profile-header {
@@ -36,6 +43,8 @@
             padding: 20px;
             margin-top: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .profile-section h2 {
@@ -47,7 +56,6 @@
             color: #007bff;
         }
 
-        /* Style the file input for image upload */
         .file-input {
             display: none;
         }
@@ -59,16 +67,32 @@
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
+            margin-top: 20px;
         }
 
         .custom-upload-button:hover {
             background-color: #0056b3;
         }
 
+        .post-idea-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .post-idea-button:hover {
+            background-color: #218838;
+        }
+
         .uploaded-images {
             display: flex;
             flex-wrap: wrap;
             margin-top: 20px;
+            justify-content: center;
         }
 
         .uploaded-image {
@@ -84,6 +108,8 @@
             padding: 10px;
             margin: 20px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .image-card img {
@@ -108,14 +134,13 @@
             text-decoration: underline;
         }
 
-        /* New styles for the settings box */
         .settings-box {
-            display: none; /* Hide initially on all devices */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             height: 100%;
-            width: 200px; /* Adjust the width as needed */
+            width: 200px;
             background-color: #000;
             color: #fff;
             display: flex;
@@ -123,8 +148,8 @@
             align-items: center;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 999; /* Ensure the box is on top */
-            overflow-y: auto; /* Add scrolling for smaller screens */
+            z-index: 999;
+            overflow-y: auto;
         }
 
         .settings-options {
@@ -142,9 +167,9 @@
 
         .logout-button {
             padding: 10px 20px;
-            background-color: #ff0000; /* Red background */
+            background-color: #ff0000;
             border-radius: 5px;
-            margin-top: 20px; /* Place the button at the top */
+            margin-top: 20px;
         }
 
         .logout-button a {
@@ -153,14 +178,30 @@
             font-size: 18px;
         }
 
-        /* Media query for mobile devices */
+        .discussion-button,
+        .discussion-button-right {
+            display: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .discussion-button:hover,
+        .discussion-button-right:hover {
+            background-color: #0056b3;
+        }
+
         @media screen and (max-width: 768px) {
             .settings-box {
                 display: none;
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 0; /* Initially hidden */
+                width: 0;
                 background-color: rgba(0, 0, 0, 0.8);
                 z-index: 999;
                 overflow-y: auto;
@@ -169,11 +210,27 @@
                 width: 200px;
             }
 
-            /* Add an "Options" button for mobile devices */
-            .options-button {
+            .options-button,
+            .discussion-button {
                 position: absolute;
                 top: 20px;
-                left: 20px; /* Adjust the left position */
+                left: 20px;
+                background-color: #000;
+                color: #fff;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .discussion-button {
+                display: block;
+            }
+
+            .discussion-button-right {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
                 background-color: #000;
                 color: #fff;
                 padding: 10px;
@@ -181,13 +238,50 @@
                 cursor: pointer;
             }
         }
+
+        .settings-box-right {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #87CEFA;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .settings-options-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .settings-options-right a {
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Media query to hide the right settings box for mobile devices */
+        @media screen and (max-width: 768px) {
+            .settings-box-right {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- "Options" button for mobile devices -->
     <div class="options-button" id="optionsButton">Options</div>
+    <div class="discussion-button-right" id="discussionButtonRight">Discuss</div>
 
-    <!-- Settings Box -->
     <div class="settings-box" id="settingsBox">
         <div class="settings-options">
             <h1> SETTINGS </h1>
@@ -195,6 +289,14 @@
         </div>
         <div class="logout-button">
             <a href="#">Logout</a>
+        </div>
+        <div class="discussion-button" id="discussionButton">Discussion</div>
+    </div>
+
+    <div class="settings-box-right" id="settingsBoxRight">
+        <div class="settings-options-right">
+            <h1> DISCUSSION </h1>
+            <a href="#">Chats and Groups</a>
         </div>
     </div>
 
@@ -230,50 +332,13 @@
             </ul>
         </section>
         <section class="post-section">
-            <h2>Post an Image</h2>
-            <!-- Input field for image upload -->
+            <button class="post-idea-button">Post Idea</button>
             <input type="file" id="imageUpload" class="file-input" accept="image/*">
-            <!-- Custom button to trigger file input -->
             <label for="imageUpload" class="custom-upload-button">Upload Image</label>
         </section>
-        <!-- Container for displaying uploaded images -->
-        <div class="uploaded-images" id="uploadedImages">
-            <!-- Images will be displayed here dynamically using JavaScript -->
-        </div>
+        <div class="uploaded-images" id="uploadedImages"></div>
     </div>
 
-    <script>
-        const imageUpload = document.getElementById("imageUpload");
-        const uploadedImages = document.getElementById("uploadedImages");
-        const settingsButton = document.querySelector(".logout-button");
-        const optionsButton = document.getElementById("optionsButton");
-
-        // Function to handle image upload
-        imageUpload.addEventListener("change", (event) => {
-            const files = event.target.files;
-
-            for (const file of files) {
-                if (file.type.startsWith("image/")) {
-                    const imageElement = document.createElement("img");
-                    imageElement.classList.add("uploaded-image");
-                    imageElement.src = URL.createObjectURL(file);
-                    uploadedImages.appendChild(imageElement);
-                }
-            }
-        });
-
-        // Show/hide the settings box on button click
-        settingsButton.addEventListener("click", () => {
-            const settingsBox = document.getElementById("settingsBox");
-            settingsBox.classList.toggle("show");
-        });
-
-        // Show/hide the settings box on "Options" button click (for mobile devices)
-        optionsButton.addEventListener("click", () => {
-            const settingsBox = document.getElementById("settingsBox");
-            settingsBox.classList.toggle("show");
-        });
-    </script>
     <div class="container">
         <div class="image-card">
             <img src="WhatsApp Image 2023-09-16 at 1.06.33 AM (1).jpeg" alt="Image 2">
@@ -292,5 +357,50 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const imageUpload = document.getElementById("imageUpload");
+        const uploadedImages = document.getElementById("uploadedImages");
+        const settingsButton = document.querySelector(".logout-button");
+        const optionsButton = document.getElementById("optionsButton");
+        const discussionButton = document.getElementById("discussionButton");
+        const discussionButtonRight = document.getElementById("discussionButtonRight");
+
+        imageUpload.addEventListener("change", (event) => {
+            const files = event.target.files;
+
+            for (const file of files) {
+                if (file.type.startsWith("image/")) {
+                    const imageElement = document.createElement("img");
+                    imageElement.classList.add("uploaded-image");
+                    imageElement.src = URL.createObjectURL(file);
+                    uploadedImages.appendChild(imageElement);
+                }
+            }
+        });
+
+        settingsButton.addEventListener("click", () => {
+            const settingsBox = document.getElementById("settingsBox");
+            settingsBox.classList.toggle("show");
+        });
+
+        optionsButton.addEventListener("click", () => {
+            const settingsBox = document.getElementById("settingsBox");
+            settingsBox.classList.toggle("show");
+            window.location.href = 'logout.html';
+        });
+
+        discussionButton.addEventListener("click", () => {
+            // Handle discussion button click for mobile devices
+            alert("Discussion button clicked!");
+            window.location.href = 'chatbox.html';
+
+        });
+
+        discussionButtonRight.addEventListener("click", () => {
+            // Handle discussion button click on the right for mobile devices
+            window.location.href = 'chatbox.html';
+        });
+    </script>
 </body>
 </html>
